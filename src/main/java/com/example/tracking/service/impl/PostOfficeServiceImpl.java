@@ -6,17 +6,31 @@ import com.example.tracking.exception.PostOfficeNotFoundException;
 import com.example.tracking.model.PostOffice;
 import com.example.tracking.repository.PostOfficeRepository;
 import com.example.tracking.service.PostOfficeService;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class PostOfficeServiceImpl implements PostOfficeService {
+
     @Autowired
     private PostOfficeRepository postOfficeRepository;
 
+    @Transactional
     public PostOfficeResponseDTO createPostOffice(PostOfficeRequestDTO postOfficeRequestDTO) {
         log.info("Создание почтового отделения с индексом: {}", postOfficeRequestDTO.getIndex());
+
+        // Проверка входных данных
+        if (postOfficeRequestDTO.getIndex() == null || postOfficeRequestDTO.getIndex().isEmpty()) {
+            throw new IllegalArgumentException("Индекс почтового отделения не может быть пустым");
+        }
+        if (postOfficeRequestDTO.getName() == null || postOfficeRequestDTO.getName().isEmpty()) {
+            throw new IllegalArgumentException("Имя почтового отделения не может быть пустым");
+        }
+        if (postOfficeRequestDTO.getAddress() == null || postOfficeRequestDTO.getAddress().isEmpty()) {
+            throw new IllegalArgumentException("Адрес почтового отделения не может быть пустым");
+        }
 
         PostOffice postOffice = new PostOffice();
         postOffice.setIndex(postOfficeRequestDTO.getIndex());
