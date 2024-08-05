@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public interface MailItemControllerApi {
             @ApiResponse(responseCode = "400", description = "Некорректные входные данные",
                     content = @Content)
     })
-    ResponseEntity<MailItemResponseDTO> registerMailItem(MailItemRequestDTO mailItemRequestDTO);
+    ResponseEntity<MailItemResponseDTO> registerMailItem(
+            @Valid @Parameter(description = "Данные для регистрации почтового отправления", required = true) MailItemRequestDTO mailItemRequestDTO);
 
     @Operation(summary = "Добавить прибытие почтового отправления", description = "Записывает прибытие почтового отправления в почтовое отделение.")
     @ApiResponses(value = {

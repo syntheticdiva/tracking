@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 
 public interface PostOfficeControllerApi {
@@ -21,7 +22,7 @@ public interface PostOfficeControllerApi {
                     content = @Content)
     })
     ResponseEntity<PostOfficeResponseDTO> createPostOffice(
-            @Parameter(description = "Данные для создания почтового отделения", required = true) PostOfficeRequestDTO postOfficeRequestDTO);
+            @Valid @Parameter(description = "Данные для создания почтового отделения", required = true) PostOfficeRequestDTO postOfficeRequestDTO);
 
     @Operation(summary = "Получить почтовое отделение по индексу", description = "Извлекает информацию о почтовом отделении по его индексу.")
     @ApiResponses(value = {
