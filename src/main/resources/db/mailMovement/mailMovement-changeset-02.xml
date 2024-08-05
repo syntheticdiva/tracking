@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+<changeSet id="2" author="Alina">
+    <createTable tableName="mail_movement">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="mail_item_id" type="bigint">
+            <constraints nullable="false"/>
+        </column>
+        <column name="post_office_id" type="bigint">
+            <constraints nullable="false"/>
+        </column>
+        <column name="movement_date" type="timestamp">
+            <constraints nullable="false"/>
+        </column>
+        <column name="action" type="varchar(50)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="status" type="varchar(50)">
+            <constraints nullable="false"/> <!-- Добавлено для хранения статуса движения -->
+        </column>
+    </createTable>
+
+    <!-- Добавление внешнего ключа для mail_item_id -->
+    <addForeignKeyConstraint
+            baseTableName="mail_movement"
+            baseColumnNames="mail_item_id"
+            referencedTableName="mail_item"
+            referencedColumnNames="id"
+            constraintName="fk_mail_movement_mail_item"/>
+</changeSet>
+</databaseChangeLog>
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<databaseChangeLog-->
+<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">-->
+
+<!--    &lt;!&ndash; Создание таблицы mail_movement &ndash;&gt;-->
+<!--    <changeSet id="2" author="Alina">-->
+<!--        <createTable tableName="mail_movement">-->
+<!--            <column name="id" type="bigint" autoIncrement="true">-->
+<!--                <constraints primaryKey="true" nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="mail_item_id" type="bigint">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="post_office_id" type="bigint">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="movement_date" type="timestamp">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="action" type="varchar(50)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="status" type="varchar(50)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
+
+<!--        &lt;!&ndash; Добавление внешнего ключа для mail_item_id &ndash;&gt;-->
+<!--        <addForeignKeyConstraint-->
+<!--                baseTableName="mail_movement"-->
+<!--                baseColumnNames="mail_item_id"-->
+<!--                referencedTableName="mail_item"-->
+<!--                referencedColumnNames="id"-->
+<!--                constraintName="fk_mail_movement_mail_item"/>-->
+<!--    </changeSet>-->
+
+<!--    <changeSet id="3" author="Alina">-->
+<!--        &lt;!&ndash; Добавление внешнего ключа для post_office_id &ndash;&gt;-->
+<!--        <addForeignKeyConstraint-->
+<!--                baseTableName="mail_movement"-->
+<!--                baseColumnNames="post_office_id"-->
+<!--                referencedTableName="post_office"-->
+<!--                referencedColumnNames="id"-->
+<!--                constraintName="fk_mail_movement_post_office"/>-->
+<!--    </changeSet>-->
+<!--</databaseChangeLog>-->
+
+
+
+
+
+
+
+
