@@ -1,6 +1,6 @@
 package com.example.tracking.service.impl;
 
-import com.example.tracking.converter.MailMovementConverter;
+import com.example.tracking.converter.MailMovementMapper;
 import com.example.tracking.dto.mailItemDTO.MailItemDTO;
 import com.example.tracking.dto.MailMovementDTO;
 import com.example.tracking.dto.mailItemDTO.MailItemRequestDTO;
@@ -39,7 +39,7 @@ public class MailItemServiceImpl implements MailItemService {
     private PostOfficeRepository postOfficeRepository;
 
     @Autowired
-    private MailMovementConverter mailMovementMapper;
+    private MailMovementMapper mailMovementMapper;
 
     // Регистрация почтового отправления
     public MailItemResponseDTO registerMailItem(@Valid MailItemRequestDTO mailItemRequestDTO) {
