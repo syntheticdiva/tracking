@@ -1,5 +1,5 @@
 package com.example.tracking.service;
-import com.example.tracking.converter.MailMovementConverter;
+import com.example.tracking.converter.MailMovementMapper;
 import com.example.tracking.dto.MailMovementDTO;
 import com.example.tracking.dto.mailItemDTO.MailItemDTO;
 import com.example.tracking.dto.mailItemDTO.MailItemRequestDTO;
@@ -7,7 +7,6 @@ import com.example.tracking.dto.mailItemDTO.MailItemResponseDTO;
 import com.example.tracking.enums.MailItemStatus;
 import com.example.tracking.enums.MailItemType;
 import com.example.tracking.enums.MailMovementAction;
-import com.example.tracking.converter.MailMovementConverter;
 import com.example.tracking.model.MailItem;
 import com.example.tracking.model.MailMovement;
 import com.example.tracking.model.PostOffice;
@@ -45,7 +44,7 @@ class MailItemServiceImplTest {
     private PostOfficeRepository postOfficeRepository;
 
     @Mock
-    private MailMovementConverter mailMovementConverter;
+    private MailMovementMapper mailMovementConverter;
     @InjectMocks
     private MailItemServiceImpl mailItemServiceImpl;
 

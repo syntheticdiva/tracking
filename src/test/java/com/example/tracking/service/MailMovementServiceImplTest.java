@@ -103,7 +103,7 @@ public class MailMovementServiceImplTest {
     @Test
     public void testSaveMailMovement_PostOfficeNotFound() {
         when(postOfficeRepository.findById(String.valueOf(postOffice.getId()))).thenReturn(Optional.empty());
-        when(mailItemRepository.findById(mailItem.getId())).thenReturn(Optional.of(mailItem));
+        lenient().when(mailItemRepository.findById(mailItem.getId())).thenReturn(Optional.of(mailItem));
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             mailMovementServiceImpl.saveMailMovement(mailMovement);
